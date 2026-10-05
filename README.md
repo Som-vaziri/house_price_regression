@@ -1,6 +1,6 @@
 # House Price Regression
 
-A machine learning regression project using the **Ames Housing dataset** to predict house sale prices.
+A focused machine learning regression project using the **Ames Housing dataset** to predict house sale prices.
 
 ## Approach
 
@@ -8,7 +8,8 @@ A machine learning regression project using the **Ames Housing dataset** to pred
 * Built a Scikit-learn preprocessing pipeline:
 
   * Median imputation for numerical features
-  * Missing-value handling and one-hot encoding for categorical features
+  * Missing-value handling for categorical features
+  * One-hot encoding for categorical variables
 * Compared three regression models:
 
   * Ridge Regression
@@ -40,10 +41,41 @@ GradientBoostingRegressor(
 * MAE: **$15,493**
 * RMSE: **$26,695**
 
-The final pipeline was retrained on the full training dataset and saved as:
+The target was trained in log scale, while the reported MAE and RMSE above are calculated after converting predictions back to the original dollar scale.
+
+## Inference
+
+The trained preprocessing + model pipeline is used directly on unseen test data.
+
+```bash
+python -m src.predict
+```
+
+Predictions are written to:
+
+```text
+output/house_price_predictions.csv
+```
+
+The trained model is saved locally as:
 
 ```text
 models/house_price_gradient_boosting.joblib
+```
+
+Generated models and prediction files are excluded from Git.
+
+## Data
+
+This project uses the **House Prices: Advanced Regression Techniques** dataset from Kaggle.
+
+The dataset files are intentionally kept out of the Git repository. Place the following files inside `data/` before running the project:
+
+```text
+data/
+├── train.csv
+├── test.csv
+└── data_description.txt
 ```
 
 ## Project Structure
@@ -54,7 +86,13 @@ house_price_regression/
 ├── models/
 ├── output/
 ├── src/
-└── README.md
+│   ├── model.py
+│   ├── predict.py
+│   ├── preprocessing.py
+│   └── train_final_model.py
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
 
 ## Technologies
