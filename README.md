@@ -83,3 +83,12 @@ XGBRegressor(
     colsample_bytree=0.9,
     min_child_weight=1
 )
+
+### Final Cross-Validation Performance
+
+* Mean MAE: **$15,088**
+* MAE standard deviation: **$1,701**
+
+Although an MAE of **$15,088** may appear high in absolute dollar terms, it represents approximately **8.3% of the dataset's average sale price of $180,921**, which provides useful context for interpreting the model's prediction error.
+
+This represents an approximately **8.1% reduction in mean MAE** compared with the original Gradient Boosting model.
